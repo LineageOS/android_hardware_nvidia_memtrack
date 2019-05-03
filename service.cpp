@@ -22,6 +22,7 @@
 #include <android/log.h>
 #include <hidl/HidlTransportSupport.h>
 #include <hardware/memtrack.h>
+#include "Memtrack.h"
 
 using android::sp;
 using android::status_t;
@@ -36,9 +37,25 @@ using android::hardware::memtrack::V1_0::implementation::Memtrack;
 
 int main() {
 
+    status_t status;
+    android::sp<Memtrack> service = nullptr;
+
     ALOGI("Memtrack HAL Service 1.0 for Nvidia is starting.");
 
+    service = new Memtrack();
+    if (service == nullptr) {
+        ALOGE("Can not create an instance of Memtrack HAL Iface, exiting.");
+
+        goto shutdown;
+    }
+
     configureRpcThreadpool(1, true /*callerWillJoin*/);
+
+    status = service->registerAsSystemService();
+    if (status != OK) {
+        ALOGE("Could not register service for Memtrack HAL Iface (%d).", status);
+        goto shutdown;
+    }
 
     ALOGI("Memtrack Service is ready");
     joinRpcThreadpool();
