@@ -34,6 +34,8 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 
 struct Memtrack : public IMemtrack {
+    void getNvmapMemory(int32_t pid, hidl_vec<MemtrackRecord> records);
+
     // Methods from ::android::hardware::memtrack::V1_0::IMemtrack follow.
 
     Memtrack();

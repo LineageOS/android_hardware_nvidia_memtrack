@@ -37,6 +37,15 @@ Return<void> Memtrack::getMemory(int32_t pid, MemtrackType type,
         getMemory_cb _hidl_cb)  {
     hidl_vec<MemtrackRecord> records;
 
+    switch (type) {
+        case MemtrackType::GL:
+            getNvmapMemory(pid, records);
+            break;
+
+        default:
+            break;
+    };
+
     _hidl_cb(MemtrackStatus::SUCCESS, records);
     return Void();
 }
