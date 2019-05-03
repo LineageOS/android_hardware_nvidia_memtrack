@@ -17,6 +17,7 @@ cc_binary {
     srcs: [
         "Memtrack.cpp",
         "service.cpp",
+        "nvmap.cpp",
     ],
 
     shared_libs: [
