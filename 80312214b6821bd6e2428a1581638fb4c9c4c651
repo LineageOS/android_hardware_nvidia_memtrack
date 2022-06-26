@@ -87,6 +87,30 @@
       },
       "revId": "80312214b6821bd6e2428a1581638fb4c9c4c651",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "190907b9_819928a1",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-06-26T01:23:39Z",
+      "side": 1,
+      "message": "The -nvidia name conflicts with the prebuilt memtrack in tegra-common. Using -tegra instead.",
+      "parentUuid": "b1816129_3bba885c",
+      "range": {
+        "startLine": 37,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 60
+      },
+      "revId": "80312214b6821bd6e2428a1581638fb4c9c4c651",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
