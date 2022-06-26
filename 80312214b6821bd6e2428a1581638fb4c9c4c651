@@ -39,6 +39,30 @@
       },
       "revId": "80312214b6821bd6e2428a1581638fb4c9c4c651",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a437628a_329257b1",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-06-26T00:47:42Z",
+      "side": 1,
+      "message": "Yeah, that probably would make more sense. It doesn\u0027t cause conflicts, though.",
+      "parentUuid": "ef2816b1_f4d2dace",
+      "range": {
+        "startLine": 37,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 60
+      },
+      "revId": "80312214b6821bd6e2428a1581638fb4c9c4c651",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
