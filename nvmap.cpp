@@ -21,6 +21,12 @@ bool Memtrack::valid_type(MemtrackType requested_type, uint32_t entry_type) {
                 return true;
             break;
 
+        case MemtrackType::GRAPHICS:
+            if (entry_type == 0x0400 || entry_type == 0x0401 || entry_type == 0x0C00 ||
+                entry_type == 0x0E00 || entry_type == 0x0F00)
+                return true;
+            break;
+
         default:
             break;
     };

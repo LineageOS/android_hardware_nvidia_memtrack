@@ -39,6 +39,7 @@ Return<void> Memtrack::getMemory(int32_t pid, MemtrackType type,
 
     switch (type) {
         case MemtrackType::GL:
+        case MemtrackType::GRAPHICS:
             getNvmapMemory(pid, type, records);
             break;
 
