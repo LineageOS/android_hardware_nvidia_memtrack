@@ -39,7 +39,7 @@ Return<void> Memtrack::getMemory(int32_t pid, MemtrackType type,
 
     switch (type) {
         case MemtrackType::GL:
-            getNvmapMemory(pid, records);
+            getNvmapMemory(pid, type, records);
             break;
 
         default:

@@ -14,7 +14,21 @@ namespace implementation {
 
 using ::android::hardware::memtrack::V1_0::MemtrackFlag;
 
-void Memtrack::getNvmapMemory(int32_t pid, hidl_vec<MemtrackRecord> records) {
+bool Memtrack::valid_type(MemtrackType requested_type, uint32_t entry_type) {
+    switch (requested_type) {
+        case MemtrackType::GL:
+            if (entry_type == 0x0100 || (entry_type >= 0x0701 && entry_type <= 0x0705))
+                return true;
+            break;
+
+        default:
+            break;
+    };
+
+    return false;
+}
+
+void Memtrack::getNvmapMemory(int32_t pid, MemtrackType type, hidl_vec<MemtrackRecord> records) {
     struct nvmap_debugfs_handles_header hdr;
     struct nvmap_debugfs_handles_entry  entry;
 
@@ -32,7 +46,8 @@ void Memtrack::getNvmapMemory(int32_t pid, hidl_vec<MemtrackRecord> records) {
     if (ifnode.is_open()) {
         ifnode.read((char*)&hdr, sizeof(struct nvmap_debugfs_handles_header));
         if (ifnode && hdr.version == 1) {
-            while (ifnode.read((char*)&entry, sizeof(struct nvmap_debugfs_handles_entry))) {
+            while (ifnode.read((char*)&entry, sizeof(struct nvmap_debugfs_handles_entry)) &&
+                   valid_type(type, entry.flags >> 16)) {
                 if ((entry.base == 0) && (entry.share_count > 1)) {
                      records[6].sizeInBytes += (entry.mapped_size / entry.share_count);
                      records[7].sizeInBytes += ((entry.size - entry.mapped_size) / entry.share_count);
